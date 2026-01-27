@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
         "https://expensespliter-production.up.railway.app/api/me",
         {
           credentials: "include",
+          headers: { "Content-Type": "application/json" },
         },
       );
       if (response.ok) {
