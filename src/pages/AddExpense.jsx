@@ -26,9 +26,12 @@ function AddExpense() {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:3000/groups/${id}/members`, {
-      credentials: "include",
-    })
+    fetch(
+      `https://expensespliter-production.up.railway.app/groups/${id}/members`,
+      {
+        credentials: "include",
+      },
+    )
       .then((res) => (res.ok ? res.json() : Promise.reject()))
       .then((data) => setMembers(data.members || []))
       .catch((err) => console.error("Failed to fetch members:", err))
@@ -48,7 +51,7 @@ function AddExpense() {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/groups/${id}/create-expense`,
+        `https://expensespliter-production.up.railway.app/groups/${id}/create-expense`,
         {
           method: "POST",
           credentials: "include",

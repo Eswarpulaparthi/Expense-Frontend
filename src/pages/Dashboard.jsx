@@ -51,7 +51,7 @@ function Dashboard() {
         <div className="mb-8 flex items-start justify-between">
           <div>
             <h1 className="text-3xl font-bold text-slate-900 mb-2">
-              Welcome back, {user.user.name} (ID:{user.user.id})
+              Welcome back, {user.user?.name} (ID:{user.user?.id})
             </h1>
             <p className="text-slate-600">
               Manage your groups and collaborate with your team

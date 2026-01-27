@@ -20,7 +20,7 @@ const GroupBalancePage = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:3000/groups/${id}/balance`,
+        `https://expensespliter-production.up.railway.app/groups/${id}/balance`,
         {
           credentials: "include",
         },
@@ -43,7 +43,7 @@ const GroupBalancePage = () => {
     try {
       setDeleting(true);
       const response = await fetch(
-        `http://localhost:3000/group/${id}/expenses`,
+        `https://expensespliter-production.up.railway.app/group/${id}/expenses`,
         {
           method: "DELETE",
           credentials: "include",
@@ -57,13 +57,10 @@ const GroupBalancePage = () => {
 
       const data = await response.json();
 
-      // Show success message
       alert(data.message || "Expenses cleared successfully!");
 
-      // Close modal
       setShowConfirmModal(false);
 
-      // Refresh balance or navigate back
       fetchBalance();
     } catch (err) {
       alert(`Error: ${err.message}`);
@@ -164,7 +161,6 @@ const GroupBalancePage = () => {
         </button>
       </div>
 
-      {/* Confirmation Modal */}
       {showConfirmModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">

@@ -32,7 +32,7 @@ function AddMember() {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/groups/${id}/users/${userId}`,
+        `https://expensespliter-production.up.railway.app/groups/${id}/users/${userId}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

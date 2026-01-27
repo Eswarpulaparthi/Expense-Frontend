@@ -12,9 +12,12 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/me", {
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://expensespliter-production.up.railway.app/api/me",
+        {
+          credentials: "include",
+        },
+      );
       if (response.ok) {
         const userData = await response.json();
         setUser(userData);
@@ -28,12 +31,15 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (name, email) => {
     try {
-      const response = await fetch("http://localhost:3000/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ name, email }),
-      });
+      const response = await fetch(
+        "https://expensespliter-production.up.railway.app/auth/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ name, email }),
+        },
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -50,12 +56,15 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (name, email) => {
     try {
-      const response = await fetch("http://localhost:3000/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ name, email }),
-      });
+      const response = await fetch(
+        "https://expensespliter-production.up.railway.app/auth/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ name, email }),
+        },
+      );
 
       if (response.ok) {
         return { success: true };
@@ -70,10 +79,13 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await fetch("http://localhost:3000/auth/logout", {
-        method: "POST",
-        credentials: "include",
-      });
+      await fetch(
+        "https://expensespliter-production.up.railway.app/auth/logout",
+        {
+          method: "POST",
+          credentials: "include",
+        },
+      );
       setUser(null);
     } catch (error) {
       console.error("Logout failed:", error);

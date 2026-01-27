@@ -28,12 +28,15 @@ function CreateGroup() {
     console.log("clicked to create group", name);
 
     try {
-      const response = await fetch("http://localhost:3000/create-group", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ name }),
-      });
+      const response = await fetch(
+        "https://expensespliter-production.up.railway.app/create-group",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ name }),
+        },
+      );
 
       if (response.ok) {
         const data = await response.json();

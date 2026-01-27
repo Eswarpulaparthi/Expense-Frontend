@@ -10,9 +10,12 @@ export function UserProvider({ children }) {
   const getGroups = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:3000/groups", {
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://expensespliter-production.up.railway.app/groups",
+        {
+          credentials: "include",
+        },
+      );
       if (response.ok) {
         const groupData = await response.json();
         setGroupContext(groupData.groups);

@@ -18,7 +18,7 @@ function GroupDetails() {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:3000/group/${id}/expenses`,
+        `https://expensespliter-production.up.railway.app/group/${id}/expenses`,
         { credentials: "include" },
       );
       const data = await response.json();

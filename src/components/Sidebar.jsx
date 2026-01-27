@@ -33,7 +33,7 @@ export default function Sidebar() {
       try {
         setMembersLoading(true);
         const response = await fetch(
-          `http://localhost:3000/groups/${id}/members`,
+          `https://expensespliter-production.up.railway.app/groups/${id}/members`,
           {
             credentials: "include",
           },
