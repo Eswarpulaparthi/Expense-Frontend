@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
   const checkAuth = async () => {
     try {
       const response = await fetch(
-        "https://expensespliter-production.up.railway.app/api/me",
+        "https://expensespliter.onrender.com/api/me",
         {
           credentials: "include",
           headers: { "Content-Type": "application/json" },
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (name, email) => {
     try {
       const response = await fetch(
-        "https://expensespliter-production.up.railway.app/auth/login",
+        "https://expensespliter.onrender.com/auth/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -58,7 +58,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (name, email) => {
     try {
       const response = await fetch(
-        "https://expensespliter-production.up.railway.app/auth/register",
+        "https://expensespliter.onrender.com/auth/register",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -80,13 +80,10 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await fetch(
-        "https://expensespliter-production.up.railway.app/auth/logout",
-        {
-          method: "POST",
-          credentials: "include",
-        },
-      );
+      await fetch("https://expensespliter.onrender.com/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
       setUser(null);
     } catch (error) {
       console.error("Logout failed:", error);

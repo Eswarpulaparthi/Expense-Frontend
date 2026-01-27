@@ -11,7 +11,7 @@ export function UserProvider({ children }) {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://expensespliter-production.up.railway.app/groups",
+        "https://expensespliter.onrender.com/groups",
         {
           credentials: "include",
         },
