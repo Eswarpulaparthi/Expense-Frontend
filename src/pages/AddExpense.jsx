@@ -51,7 +51,7 @@ function AddExpense() {
 
     try {
       const response = await fetch(
-        `https://expensespliter-production.up.railway.app/groups/${id}/create-expense`,
+        `https://expensespliter.onrender.com/groups/${id}/create-expense`,
         {
           method: "POST",
           credentials: "include",

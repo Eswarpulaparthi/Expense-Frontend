@@ -29,7 +29,7 @@ function CreateGroup() {
 
     try {
       const response = await fetch(
-        "https://expensespliter-production.up.railway.app/create-group",
+        "https://expensespliter.onrender.com/create-group",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

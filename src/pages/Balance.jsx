@@ -20,7 +20,7 @@ const GroupBalancePage = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        `https://expensespliter-production.up.railway.app/groups/${id}/balance`,
+        `https://expensespliter.onrender.com/groups/${id}/balance`,
         {
           credentials: "include",
         },
@@ -43,7 +43,7 @@ const GroupBalancePage = () => {
     try {
       setDeleting(true);
       const response = await fetch(
-        `https://expensespliter-production.up.railway.app/group/${id}/expenses`,
+        `https://expensespliter.onrender.com/group/${id}/expenses`,
         {
           method: "DELETE",
           credentials: "include",

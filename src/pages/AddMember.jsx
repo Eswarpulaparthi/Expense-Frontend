@@ -32,7 +32,7 @@ function AddMember() {
 
     try {
       const response = await fetch(
-        `https://expensespliter-production.up.railway.app/groups/${id}/users/${userId}`,
+        `https://expensespliter.onrender.com/groups/${id}/users/${userId}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

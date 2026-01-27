@@ -33,7 +33,7 @@ export default function Sidebar() {
       try {
         setMembersLoading(true);
         const response = await fetch(
-          `https://expensespliter-production.up.railway.app/groups/${id}/members`,
+          `https://expensespliter.onrender.com/groups/${id}/members`,
           {
             credentials: "include",
           },
