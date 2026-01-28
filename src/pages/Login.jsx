@@ -7,8 +7,14 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,9 +23,7 @@ export const Login = () => {
 
     const result = await login(name, email);
 
-    if (result.success) {
-      navigate("/dashboard");
-    } else {
+    if (!result.success) {
       setError(result.message || "Login failed");
     }
     setLoading(false);
