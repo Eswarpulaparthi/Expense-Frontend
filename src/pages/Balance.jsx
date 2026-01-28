@@ -9,7 +9,7 @@ const GroupBalancePage = () => {
   const [error, setError] = useState(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [deleting, setDeleting] = useState(false);
-
+  const backend_uri = import.meta.env.VITE_BACKEND_URI;
   const { id } = useParams();
 
   useEffect(() => {
@@ -19,12 +19,9 @@ const GroupBalancePage = () => {
   const fetchBalance = async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        `https://expensespliter.onrender.com/groups/${id}/balance`,
-        {
-          credentials: "include",
-        },
-      );
+      const response = await fetch(`${backend_uri}/groups/${id}/balance`, {
+        credentials: "include",
+      });
 
       if (!response.ok) {
         throw new Error("Failed to fetch balance");
@@ -42,13 +39,10 @@ const GroupBalancePage = () => {
   const handleClearExpenses = async () => {
     try {
       setDeleting(true);
-      const response = await fetch(
-        `https://expensespliter.onrender.com/group/${id}/expenses`,
-        {
-          method: "DELETE",
-          credentials: "include",
-        },
-      );
+      const response = await fetch(`${backend_uri}/group/${id}/expenses`, {
+        method: "DELETE",
+        credentials: "include",
+      });
 
       if (!response.ok) {
         const errorData = await response.json();

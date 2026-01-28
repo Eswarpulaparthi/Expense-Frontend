@@ -6,16 +6,13 @@ export function UserProvider({ children }) {
   const [group_name, setGroup_name] = useState("");
   const [groupContext, setGroupContext] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const backend_uri = import.meta.env.VITE_BACKEND_URI;
   const getGroups = async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        "https://expensespliter.onrender.com/groups",
-        {
-          credentials: "include",
-        },
-      );
+      const response = await fetch(`${backend_uri}/groups`, {
+        credentials: "include",
+      });
       if (response.ok) {
         const groupData = await response.json();
         setGroupContext(groupData.groups);

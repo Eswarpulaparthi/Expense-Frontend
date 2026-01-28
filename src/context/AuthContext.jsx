@@ -5,6 +5,7 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const backend_uri = import.meta.env.VITE_BACKEND_URI;
 
   useEffect(() => {
     checkAuth();
@@ -12,13 +13,10 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch(
-        "https://expensespliter.onrender.com/api/me",
-        {
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-        },
-      );
+      const response = await fetch(`${backend_uri}/api/me`, {
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+      });
       if (response.ok) {
         const userData = await response.json();
         setUser(userData);
@@ -32,15 +30,12 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (name, email) => {
     try {
-      const response = await fetch(
-        "https://expensespliter.onrender.com/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({ name, email }),
-        },
-      );
+      const response = await fetch(`${backend_uri}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ name, email }),
+      });
 
       if (response.ok) {
         const data = await response.json();
@@ -57,15 +52,12 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (name, email) => {
     try {
-      const response = await fetch(
-        "https://expensespliter.onrender.com/auth/register",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({ name, email }),
-        },
-      );
+      const response = await fetch(`${backend_uri}/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ name, email }),
+      });
 
       if (response.ok) {
         return { success: true };
@@ -80,7 +72,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await fetch("https://expensespliter.onrender.com/auth/logout", {
+      await fetch(`${backend_uri}/auth/logout`, {
         method: "POST",
         credentials: "include",
       });

@@ -9,7 +9,7 @@ function GroupDetails() {
   const navigate = useNavigate();
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const backend_uri = import.meta.env.VITE_BACKEND_URI;
   useEffect(() => {
     fetchExpenses();
   }, [id]);
@@ -17,10 +17,9 @@ function GroupDetails() {
   const fetchExpenses = async () => {
     setLoading(true);
     try {
-      const response = await fetch(
-        `https://expensespliter.onrender.com/group/${id}/expenses`,
-        { credentials: "include" },
-      );
+      const response = await fetch(`${backend_uri}/group/${id}/expenses`, {
+        credentials: "include",
+      });
       const data = await response.json();
       if (data.success) setExpenses(data.expenses);
     } catch (error) {

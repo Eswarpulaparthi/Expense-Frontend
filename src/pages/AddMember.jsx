@@ -19,7 +19,7 @@ function AddMember() {
   const [userId, setUserId] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
+  const backend_uri = import.meta.env.VITE_BACKEND_URI;
   async function handleInput(e) {
     e.preventDefault();
     if (!userId.trim()) {
@@ -32,7 +32,7 @@ function AddMember() {
 
     try {
       const response = await fetch(
-        `https://expensespliter.onrender.com/groups/${id}/users/${userId}`,
+        `${backend_uri}/groups/${id}/users/${userId}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

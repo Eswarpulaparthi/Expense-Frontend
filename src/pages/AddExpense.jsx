@@ -24,14 +24,11 @@ function AddExpense() {
     description: "",
     category: "",
   });
-
+  const backend_uri = import.meta.env.VITE_BACKEND_URI;
   useEffect(() => {
-    fetch(
-      `https://expensespliter-production.up.railway.app/groups/${id}/members`,
-      {
-        credentials: "include",
-      },
-    )
+    fetch(`${backend_uri}/groups/${id}/members`, {
+      credentials: "include",
+    })
       .then((res) => (res.ok ? res.json() : Promise.reject()))
       .then((data) => setMembers(data.members || []))
       .catch((err) => console.error("Failed to fetch members:", err))
@@ -51,7 +48,7 @@ function AddExpense() {
 
     try {
       const response = await fetch(
-        `https://expensespliter.onrender.com/groups/${id}/create-expense`,
+        `${backend_uri}/groups/${id}/create-expense`,
         {
           method: "POST",
           credentials: "include",

@@ -19,7 +19,7 @@ function CreateGroup() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+  const backend_uri = import.meta.env.VITE_BACKEND_URI;
   async function handleGroup(e) {
     e.preventDefault();
     if (!name.trim()) return;
@@ -28,15 +28,12 @@ function CreateGroup() {
     console.log("clicked to create group", name);
 
     try {
-      const response = await fetch(
-        "https://expensespliter.onrender.com/create-group",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({ name }),
-        },
-      );
+      const response = await fetch(`${backend_uri}/create-group`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ name }),
+      });
 
       if (response.ok) {
         const data = await response.json();
