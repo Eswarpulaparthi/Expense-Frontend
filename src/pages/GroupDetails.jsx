@@ -16,9 +16,13 @@ function GroupDetails() {
 
   const fetchExpenses = async () => {
     setLoading(true);
+    const token = localStorage.getItem("token");
     try {
       const response = await fetch(`${backend_uri}/group/${id}/expenses`, {
-        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       });
       const data = await response.json();
       if (data.success) setExpenses(data.expenses);

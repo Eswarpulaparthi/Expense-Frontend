@@ -17,10 +17,14 @@ const GroupBalancePage = () => {
   }, [id]);
 
   const fetchBalance = async () => {
+    const token = localStorage.getItem("token");
     try {
       setLoading(true);
       const response = await fetch(`${backend_uri}/groups/${id}/balance`, {
-        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       });
 
       if (!response.ok) {
@@ -37,11 +41,15 @@ const GroupBalancePage = () => {
   };
 
   const handleClearExpenses = async () => {
+    const token = localStorage.getItem("token");
     try {
       setDeleting(true);
       const response = await fetch(`${backend_uri}/group/${id}/expenses`, {
         method: "DELETE",
-        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       });
 
       if (!response.ok) {

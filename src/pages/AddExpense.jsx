@@ -24,10 +24,15 @@ function AddExpense() {
     description: "",
     category: "",
   });
+  const token = localStorage.getItem("token");
   const backend_uri = import.meta.env.VITE_BACKEND_URI;
   useEffect(() => {
+    const token = localStorage.getItem("token");
     fetch(`${backend_uri}/groups/${id}/members`, {
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     })
       .then((res) => (res.ok ? res.json() : Promise.reject()))
       .then((data) => setMembers(data.members || []))
@@ -52,7 +57,10 @@ function AddExpense() {
         {
           method: "POST",
           credentials: "include",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({
             ...formData,
             amount: parseFloat(formData.amount),

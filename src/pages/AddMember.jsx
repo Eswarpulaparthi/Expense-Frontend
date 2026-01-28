@@ -29,13 +29,16 @@ function AddMember() {
 
     setLoading(true);
     setError("");
-
+    const token = localStorage.getItem("token");
     try {
       const response = await fetch(
         `${backend_uri}/groups/${id}/users/${userId}`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
           credentials: "include",
         },
       );

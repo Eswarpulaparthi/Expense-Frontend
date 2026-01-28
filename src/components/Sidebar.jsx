@@ -10,7 +10,7 @@ export default function Sidebar() {
   const [membersLoading, setMembersLoading] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const backend_uri = import.meta.env.VITE_BACKEND_URI;
   useEffect(() => {
     if (id && groupContext.length > 0) {
       const currentGroup = groupContext.find(
@@ -32,12 +32,13 @@ export default function Sidebar() {
 
       try {
         setMembersLoading(true);
-        const response = await fetch(
-          `https://expensespliter.onrender.com/groups/${id}/members`,
-          {
-            credentials: "include",
+        const token = localStorage.getItem("token");
+        const response = await fetch(`${backend_uri}/groups/${id}/members`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
-        );
+        });
         if (response.ok) {
           const membersData = await response.json();
           setMembers(membersData.members || []);

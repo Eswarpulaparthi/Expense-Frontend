@@ -8,10 +8,14 @@ export function UserProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const backend_uri = import.meta.env.VITE_BACKEND_URI;
   const getGroups = async () => {
+    const token = localStorage.getItem("token");
     try {
       setLoading(true);
       const response = await fetch(`${backend_uri}/groups`, {
-        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       });
       if (response.ok) {
         const groupData = await response.json();

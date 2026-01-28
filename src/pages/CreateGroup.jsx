@@ -26,11 +26,14 @@ function CreateGroup() {
 
     setLoading(true);
     console.log("clicked to create group", name);
-
+    const token = localStorage.getItem("token");
     try {
       const response = await fetch(`${backend_uri}/create-group`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
         credentials: "include",
         body: JSON.stringify({ name }),
       });
