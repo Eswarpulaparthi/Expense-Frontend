@@ -88,7 +88,7 @@ function AddExpense() {
       <div className="max-w-2xl mx-auto">
         <button
           onClick={() => navigate(`/group/${id}`)}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4 mb-6 transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
           <span>Back to Group</span>
